@@ -1,0 +1,87 @@
+name: immich
+services:
+  immich-server:
+    image: ghcr.io/immich-app/immich-server:v1.127.0
+    container_name: immich_server
+    restart: unless-stopped
+    depends_on:
+      - redis
+      - database
+    ports:
+      - "2283:2283"
+    volumes:
+      - /DATA/AppData/immich/upload:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      DB_HOSTNAME: database
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      DB_DATABASE_NAME: immich
+      REDIS_HOSTNAME: redis
+
+  immich-machine-learning:
+    image: ghcr.io/immich-app/immich-machine-learning:v1.127.0
+    container_name: immich_machine_learning
+    restart: unless-stopped
+    volumes:
+      - /DATA/AppData/immich/model-cache:/cache
+
+  redis:
+    image: redis:6.2-alpine
+    container_name: immich_redis
+    restart: unless-stopped
+
+  database:
+    image: tensorchord/pgvecto-rs:pg14-v0.2.0
+    container_name: immich_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: immich
+      PG_DATA_DIRNAME: /var/lib/postgresql/data
+    volumes:
+      - /DATA/AppData/immich/postgres:/var/lib/postgresql/data
+
+x-glass:
+  title:
+    pt_br: Immich
+    en_us: Immich
+  tagline:
+    pt_br: Backup de fotos com foco em privacidade.
+    en_us: High performance photo backup with privacy in mind.
+  description:
+    pt_br: |
+      Immich gerencia e faz backup direto do seu celular para o seu servidor,
+      com apps nativos, linha do tempo, reconhecimento facial e busca por
+      conteúdo — uma alternativa self-hosted ao Google Fotos.
+    en_us: |
+      Immich manages and backs up your phone media straight to your own
+      server, with native apps, timeline, face recognition and content search.
+  developer: Immich Team
+  category: multimedia
+  tags: [Multimedia, Photos]
+  architectures: [amd64, arm64]
+  version: "1.127.0"
+  updatedAt: "2026-08-24"
+  icon: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Immich/icon.png
+  background: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Immich/thumbnail.png
+  website: https://immich.app
+  source: https://github.com/immich-app/immich
+  docs: https://immich.app/docs
+  entrypoint:
+    main: immich-server
+    index: /
+    portMap: "2283"
+    scheme: http
+  customInstall: true
+  requirements:
+    memory:
+      minimum: 4GB
+      recommended: 6GB+
+    storage:
+      minimum: 50GB
+      recommended: 500GB+
+    processor:
+      minimum: Quad Core 64 bits
+      recommended: Eight Core ARM

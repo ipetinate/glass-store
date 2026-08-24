@@ -1,0 +1,79 @@
+name: nextcloud
+services:
+  nextcloud:
+    image: nextcloud:31.0.2-apache
+    container_name: nextcloud
+    restart: unless-stopped
+    depends_on:
+      - database
+      - redis
+    ports:
+      - "8080:80"
+    volumes:
+      - /DATA/AppData/nextcloud/html:/var/www/html
+    environment:
+      MYSQL_HOST: database
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud
+      MYSQL_PASSWORD: nextcloud
+      REDIS_HOST: redis
+
+  database:
+    image: mariadb:11.4
+    container_name: nextcloud_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: nextcloud
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud
+      MYSQL_PASSWORD: nextcloud
+    volumes:
+      - /DATA/AppData/nextcloud/db:/var/lib/mysql
+
+  redis:
+    image: redis:7.4-alpine
+    container_name: nextcloud_redis
+    restart: unless-stopped
+
+x-glass:
+  title:
+    pt_br: Nextcloud
+    en_us: Nextcloud
+  tagline:
+    pt_br: Arquivos, calendário e colaboração em um só lugar.
+    en_us: Files, calendar and collaboration in one place.
+  description:
+    pt_br: |
+      Suíte de colaboração self-hosted: arquivos com sincronização e
+      compartilhamento, calendário, contatos, fotos e centenas de apps da
+      comunidade — mantendo seus dados no seu servidor.
+    en_us: |
+      Self-hosted productivity suite: file sync and share, calendar,
+      contacts, photos and hundreds of community apps on your own server.
+  developer: Nextcloud GmbH
+  category: productivity
+  tags: [Productivity, Files]
+  architectures: [amd64, arm64, arm]
+  version: "31.0.2"
+  updatedAt: "2026-08-24"
+  icon: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Nextcloud/icon.png
+  background: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Nextcloud/thumbnail.png
+  website: https://nextcloud.com
+  source: https://github.com/nextcloud/server
+  docs: https://docs.nextcloud.com
+  entrypoint:
+    main: nextcloud
+    index: /
+    portMap: "8080"
+    scheme: http
+  customInstall: true
+  requirements:
+    memory:
+      minimum: 512MB
+      recommended: 4GB+
+    storage:
+      minimum: 50GB
+      recommended: 100GB+
+    processor:
+      minimum: Dual Core 64 bits
+      recommended: Quad Core ARM

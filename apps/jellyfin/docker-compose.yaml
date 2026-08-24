@@ -1,0 +1,60 @@
+name: jellyfin
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:10.10.6
+    container_name: jellyfin
+    restart: unless-stopped
+    ports:
+      - "8096:8096"
+    volumes:
+      - /DATA/AppData/jellyfin/config:/config
+      - /DATA/AppData/jellyfin/cache:/cache
+      - /DATA/AppData/media:/media
+
+x-glass:
+  title:
+    pt_br: Jellyfin
+    en_us: Jellyfin
+  tagline:
+    pt_br: Sua mídia, seu servidor, do seu jeito.
+    en_us: Your media, your server, your way.
+  description:
+    pt_br: |
+      Jellyfin é a solução de mídia construída por voluntários que coloca
+      você no controle da sua biblioteca. Transmita para qualquer dispositivo
+      a partir do seu próprio servidor, sem amarras: filmes, séries, música
+      e fotos com metadados, legendas e transcodificação on-the-fly.
+    en_us: |
+      Jellyfin is the volunteer-built media solution that puts you in control
+      of your media. Stream to any device from your own server, with no
+      strings attached.
+  developer: Jellyfin Dev Team
+  category: multimedia
+  tags: [Multimedia, Video, Library]
+  architectures: [amd64, arm64, arm]
+  version: "10.10.6"
+  updatedAt: "2026-08-24"
+  icon: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Jellyfin/icon.png
+  background: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Jellyfin/thumbnail.png
+  screenshots:
+    - https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Jellyfin/screenshot-1.png
+    - https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Jellyfin/screenshot-2.png
+  website: https://jellyfin.org
+  source: https://github.com/jellyfin/jellyfin
+  docs: https://jellyfin.org/docs/
+  entrypoint:
+    main: jellyfin
+    index: /
+    portMap: "8096"
+    scheme: http
+  customInstall: true
+  requirements:
+    memory:
+      minimum: 2GB
+      recommended: 4GB+
+    storage:
+      minimum: 50GB
+      recommended: 100GB+
+    processor:
+      minimum: Dual Core 64 bits
+      recommended: Six Core ARM

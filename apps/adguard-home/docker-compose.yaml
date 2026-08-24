@@ -1,0 +1,57 @@
+name: adguard-home
+services:
+  adguard-home:
+    image: adguard/adguardhome:v0.107.57
+    container_name: adguard-home
+    restart: unless-stopped
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "3080:3000/tcp"
+      - "8081:80/tcp"
+    volumes:
+      - /DATA/AppData/adguard-home/work:/opt/adguardhome/work
+      - /DATA/AppData/adguard-home/conf:/opt/adguardhome/conf
+
+x-glass:
+  title:
+    pt_br: AdGuard Home
+    en_us: AdGuard Home
+  tagline:
+    pt_br: Bloqueio de anúncios e rastreadores para toda a rede.
+    en_us: Network-wide ads and trackers blocking DNS server.
+  description:
+    pt_br: |
+      Servidor DNS que bloqueia anúncios e rastreadores para todos os
+      dispositivos da rede, com painel de controle, filtros configuráveis
+      e criptografia DNS (DoH/DoT).
+    en_us: |
+      DNS server that blocks ads and trackers for every device on your
+      network, with a dashboard, configurable filters and encrypted DNS.
+  developer: AdGuard Team
+  category: networking
+  tags: [Networking, DNS]
+  architectures: [amd64, arm64, arm]
+  version: "0.107.57"
+  updatedAt: "2026-08-24"
+  icon: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/AdGuardHome/icon.png
+  background: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/AdGuardHome/thumbnail.png
+  website: https://adguard.com
+  source: https://github.com/AdguardTeam/AdGuardHome
+  docs: https://github.com/AdguardTeam/AdGuardHome/wiki
+  entrypoint:
+    main: adguard-home
+    index: /
+    portMap: "8081"
+    scheme: http
+  customInstall: true
+  requirements:
+    memory:
+      minimum: 512MB
+      recommended: 2GB+
+    storage:
+      minimum: 5GB
+      recommended: 20GB+
+    processor:
+      minimum: Single Core 64 bits
+      recommended: Dual Core ARM

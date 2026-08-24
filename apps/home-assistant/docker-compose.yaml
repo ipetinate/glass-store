@@ -1,0 +1,52 @@
+name: home-assistant
+services:
+  home-assistant:
+    image: homeassistant/home-assistant:2025.3.3
+    container_name: home-assistant
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /DATA/AppData/home-assistant/config:/config
+
+x-glass:
+  title:
+    pt_br: Home Assistant
+    en_us: Home Assistant
+  tagline:
+    pt_br: Automação residencial com privacidade local.
+    en_us: Local-first home automation.
+  description:
+    pt_br: |
+      Plataforma de automação residencial que integra milhares de
+      dispositivos e serviços, executando automações localmente — sem
+      depender da nuvem para funcionar.
+    en_us: |
+      Home automation platform integrating thousands of devices and
+      services while running your automations locally, without the cloud.
+  developer: Nabu Casa
+  category: home
+  tags: [Home, Automation]
+  architectures: [amd64, arm64]
+  version: "2025.3.3"
+  updatedAt: "2026-08-24"
+  icon: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/HomeAssistant/icon.png
+  background: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/HomeAssistant/thumbnail.png
+  website: https://www.home-assistant.io
+  source: https://github.com/home-assistant/core
+  docs: https://www.home-assistant.io/docs/
+  entrypoint:
+    main: home-assistant
+    index: /
+    portMap: "8123"
+    scheme: http
+  customInstall: false
+  requirements:
+    memory:
+      minimum: 2GB
+      recommended: 4GB+
+    storage:
+      minimum: 32GB
+      recommended: 100GB+
+    processor:
+      minimum: Dual Core 64 bits
+      recommended: Quad Core ARM

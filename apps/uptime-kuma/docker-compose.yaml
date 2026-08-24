@@ -1,0 +1,54 @@
+name: uptime-kuma
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:1.23.16
+    container_name: uptime-kuma
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    volumes:
+      - /DATA/AppData/uptime-kuma/data:/app/data
+
+x-glass:
+  title:
+    pt_br: Uptime Kuma
+    en_us: Uptime Kuma
+  tagline:
+    pt_br: Monitor de disponibilidade self-hosted.
+    en_us: Self-hosted uptime monitoring.
+  description:
+    pt_br: |
+      Monitore sites, APIs e serviços com verificações HTTP/TCP/DNS,
+      bonitos status pages, notificações em dezenas de canais (Slack,
+      Telegram, Discord, webhooks) e histórico de latência.
+    en_us: |
+      Monitor websites, APIs and services with HTTP/TCP/DNS checks,
+      status pages, notifications via dozens of channels and latency
+      history — all self-hosted.
+  developer: Louis Lam
+  category: devops
+  tags: [Monitoring]
+  architectures: [amd64, arm64, arm]
+  version: "1.23.16"
+  updatedAt: "2026-08-24"
+  icon: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/UptimeKuma/icon.png
+  background: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/UptimeKuma/thumbnail.png
+  website: https://uptime.kuma.pet
+  source: https://github.com/louislam/uptime-kuma
+  docs: https://github.com/louislam/uptime-kuma/wiki
+  entrypoint:
+    main: uptime-kuma
+    index: /
+    portMap: "3001"
+    scheme: http
+  customInstall: true
+  requirements:
+    memory:
+      minimum: 512MB
+      recommended: 2GB+
+    storage:
+      minimum: 5GB
+      recommended: 20GB+
+    processor:
+      minimum: Single Core 64 bits
+      recommended: Dual Core ARM
