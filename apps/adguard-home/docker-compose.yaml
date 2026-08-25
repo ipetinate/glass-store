@@ -14,27 +14,20 @@ services:
       - /DATA/AppData/adguard-home/conf:/opt/adguardhome/conf
 
 x-glass:
-  title:
-    pt_br: AdGuard Home
-    en_us: AdGuard Home
-  tagline:
-    pt_br: Bloqueio de anúncios e rastreadores para toda a rede.
-    en_us: Network-wide ads and trackers blocking.
-  description:
-    pt_br: |
-      Servidor DNS self-hosted que bloqueia anúncios, rastreadores e
-      domínios indesejados para toda a rede.
-    en_us: |
-      Self-hosted DNS server that blocks ads, trackers and unwanted
-      domains for your whole network.
+  title: AdGuard Home
+  tagline: Network-wide ads and trackers blocking.
+  description: Self-hosted DNS server that blocks ads, trackers and unwanted domains for your whole network.
   developer: AdGuard Software Ltd.
   category: networking
   tags: [dns, adblock, privacy, network, security]
   architectures: [amd64, arm64]
   version: "0.107.70"
   updatedAt: "2026-08-25"
-  icon: ./assets/icon.svg
-  background: ./assets/background.svg
+  icon: ./assets/icon.webp
+  background: ./assets/background.png
+  screenshots:
+    - ./assets/screenshot-1.png
+    - ./assets/screenshot-2.webp
   website: https://adguard.com/adguard-home/overview.html
   source: https://github.com/AdguardTeam/AdGuardHome
   docs: https://github.com/AdguardTeam/AdGuardHome/wiki

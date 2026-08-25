@@ -12,19 +12,9 @@ services:
       - /DATA/AppData/media:/media
 
 x-glass:
-  title:
-    pt_br: Jellyfin
-    en_us: Jellyfin
-  tagline:
-    pt_br: Servidor de mídia livre para organizar e transmitir filmes, séries e música.
-    en_us: Free media server to organize and stream movies, shows and music.
-  description:
-    pt_br: |
-      Sistema de mídia self-hosted para organizar, gerenciar e transmitir
-      sua própria biblioteca.
-    en_us: |
-      Self-hosted media system to organize, manage and stream your own
-      library.
+  title: Jellyfin
+  tagline: Free media server to organize and stream movies, shows and music.
+  description: Self-hosted media system to organize, manage and stream your own library.
   developer: Jellyfin Project
   category: multimedia
   tags: [media, streaming, movies, tv, music]

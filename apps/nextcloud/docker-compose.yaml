@@ -36,18 +36,9 @@ services:
     restart: unless-stopped
 
 x-glass:
-  title:
-    pt_br: Nextcloud
-    en_us: Nextcloud
-  tagline:
-    pt_br: Sua própria nuvem para arquivos, colaboração e produtividade.
-    en_us: Your own cloud for files, collaboration and productivity.
-  description:
-    pt_br: |
-      Plataforma self-hosted para armazenamento de arquivos, sincronização
-      e colaboração.
-    en_us: |
-      Self-hosted platform for file storage, sync and collaboration.
+  title: Nextcloud
+  tagline: Your own cloud for files, collaboration and productivity.
+  description: Self-hosted platform for file storage, sync and collaboration.
   developer: Nextcloud GmbH
   category: productivity
   tags: [cloud, files, sync, collaboration, calendar]

@@ -44,19 +44,9 @@ services:
       - /DATA/AppData/immich/postgres:/var/lib/postgresql/data
 
 x-glass:
-  title:
-    pt_br: Immich
-    en_us: Immich
-  tagline:
-    pt_br: Backup e gerenciamento self-hosted de fotos e vídeos.
-    en_us: Self-hosted photo and video backup and management.
-  description:
-    pt_br: |
-      Plataforma self-hosted de gerenciamento, backup e visualização de
-      fotos e vídeos.
-    en_us: |
-      Self-hosted platform for managing, backing up and browsing your
-      photos and videos.
+  title: Immich
+  tagline: Self-hosted photo and video backup and management.
+  description: Self-hosted platform for managing, backing up and browsing your photos and videos.
   developer: Immich
   category: multimedia
   tags: [photos, videos, backup, gallery, ai]

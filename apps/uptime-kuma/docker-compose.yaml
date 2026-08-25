@@ -10,19 +10,9 @@ services:
       - /DATA/AppData/uptime-kuma/data:/app/data
 
 x-glass:
-  title:
-    pt_br: Uptime Kuma
-    en_us: Uptime Kuma
-  tagline:
-    pt_br: Monitoramento self-hosted de uptime e serviços.
-    en_us: Self-hosted uptime and service monitoring.
-  description:
-    pt_br: |
-      Ferramenta self-hosted para monitorar disponibilidade de serviços,
-      hosts e endpoints.
-    en_us: |
-      Self-hosted tool to monitor the availability of services, hosts
-      and endpoints.
+  title: Uptime Kuma
+  tagline: Self-hosted uptime and service monitoring.
+  description: Self-hosted tool to monitor the availability of services, hosts and endpoints.
   developer: Louis Lam
   category: devops
   tags: [monitoring, uptime, status-page, alerts, network]

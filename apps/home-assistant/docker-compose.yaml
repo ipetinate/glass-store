@@ -9,19 +9,9 @@ services:
       - /DATA/AppData/home-assistant/config:/config
 
 x-glass:
-  title:
-    pt_br: Home Assistant
-    en_us: Home Assistant
-  tagline:
-    pt_br: Plataforma open source para automação residencial.
-    en_us: Open source home automation platform.
-  description:
-    pt_br: |
-      Plataforma self-hosted para integrar dispositivos, criar automações
-      e controlar uma casa inteligente.
-    en_us: |
-      Self-hosted platform to integrate devices, build automations and
-      control your smart home.
+  title: Home Assistant
+  tagline: Open source home automation platform.
+  description: Self-hosted platform to integrate devices, build automations and control your smart home.
   developer: Open Home Foundation
   category: home
   tags: [smart-home, automation, iot, dashboard, home]
@@ -31,8 +21,8 @@ x-glass:
   icon: ./assets/icon.png
   background: ./assets/background.png
   screenshots:
-    - ./assets/screenshot-1.png
-    - ./assets/screenshot-2.png
+    - ./assets/screenshot-1.jpg
+    - ./assets/screenshot-2.jpg
   website: https://www.home-assistant.io/
   source: https://github.com/home-assistant/core
   docs: https://www.home-assistant.io/docs/
