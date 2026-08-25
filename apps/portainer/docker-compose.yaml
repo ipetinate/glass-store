@@ -1,7 +1,7 @@
 name: portainer
 services:
   portainer:
-    image: portainer/portainer-ce:latest
+    image: portainer/portainer-ce:2.21.5
     restart: unless-stopped
     ports:
       - "9443:9443"
@@ -26,7 +26,10 @@ x-glass:
   architectures: [amd64, arm64]
   version: "2.21.5"
   updatedAt: "2026-08-25"
-  icon: https://raw.githubusercontent.com/portainer/portainer-docs/main/images/logo-portainer.svg
+  icon: ./icon.webp
+  screenshots:
+    - ./screenshot-1.jpg
+    - ./screenshot-2.png
   entrypoint:
     main: portainer
     index: /
