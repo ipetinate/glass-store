@@ -1,47 +1,47 @@
-# Especificação — bloco `x-glass`
+# Specification — `x-glass` block
 
-Versão: `1` · Aplicável a `apps/<slug>/docker-compose.yaml`.
+Version: `1` · Applies to `apps/<slug>/docker-compose.yaml`.
 
-Um app da loja é um **docker-compose válido** (https://docs.docker.com/reference/compose-file/)
-com um bloco de extensão top-level `x-glass`. O Compose ignora blocos `x-*`,
-então o arquivo continua rodando em qualquer lugar com `docker compose up`.
+A store app is a **valid docker-compose file** (https://docs.docker.com/reference/compose-file/)
+with a top-level `x-glass` extension block. Compose ignores `x-*` blocks,
+so the file still runs anywhere with `docker compose up`.
 
-## Identidade
+## Identity
 
-- O campo top-level `name` do compose é o **id do app** na loja.
-  Regex: `^[a-z0-9][a-z0-9_-]*$` e deve ser igual ao nome da pasta.
-- A imagem do serviço principal deve estar **pinada** (tag específica ou digest).
-  `:latest` e tags flutuantes são rejeitadas.
+- The top-level `name` field in the compose file is the **app id** in the store.
+  Regex: `^[a-z0-9][a-z0-9_-]*$` and must match the folder name.
+- The main service image must be **pinned** (specific tag or digest).
+  `:latest` and floating tags are rejected.
 
-## Campos do `x-glass`
+## `x-glass` fields
 
-| Campo | Tipo | Obrigatório | Descrição |
+| Field | Type | Required | Description |
 |---|---|---|---|
-| `title` | texto \| localizado | sim | Nome exibido |
-| `tagline` | texto \| localizado | sim | Frase curta (card, ≤120 chars) |
-| `description` | texto \| localizado | sim | Descrição longa (tela de detalhe) |
-| `developer` | string | sim | Autor original do app |
-| `author` | string | não | Empacotador/ mantenedor do compose |
-| `category` | enum | sim | `multimedia` \| `productivity` \| `networking` \| `home` \| `security` \| `devops` \| `other` |
-| `tags` | string[] | não | Etiquetas livres exibidas coloridas no detalhe |
-| `architectures` | enum[] | recomendado | Subconjunto de `amd64` `\|` `arm` `\|` `arm64` `\|` `riscv64` `\|` `mips64` |
-| `version` | string | sim | Versão do app (seguir semver quando possível) |
-| `updatedAt` | data | não | `YYYY-MM-DD`, alimenta ordenação "recentes" |
-| `icon` | caminho \| URL | sim | Quadrado, fundo transparente, ≥256px |
-| `background` | caminho \| URL | não | Imagem hero usada no destaque |
-| `screenshots` | (caminho\|URL)[] | não | 2–5 imagens 16:9 |
-| `website` / `source` / `docs` | URL | não | Links exibidos no detalhe |
-| `entrypoint` | objeto | sim | Ver abaixo |
-| `customInstall` | bool | não | Default `true`; habilita porta/volume customizados na instalação |
-| `requirements` | objeto | não | Tabela mínimos/recomendados; sem ele a loja usa defaults |
+| `title` | string \| localized | yes | Display name |
+| `tagline` | string \| localized | yes | Short phrase (card, ≤120 chars) |
+| `description` | string \| localized | yes | Long description (detail screen) |
+| `developer` | string | yes | Original app author |
+| `author` | string | no | Packager / compose maintainer |
+| `category` | enum | yes | `multimedia` \| `productivity` \| `networking` \| `home` \| `security` \| `devops` \| `other` |
+| `tags` | string[] | no | Free-form tags displayed as chips in the detail view |
+| `architectures` | enum[] | recommended | Subset of `amd64` \| `arm` \| `arm64` \| `riscv64` \| `mips64` |
+| `version` | string | yes | App version (follow semver when possible) |
+| `updatedAt` | date | no | `YYYY-MM-DD`, powers the "recent" sort |
+| `icon` | path \| URL | yes | Square, transparent background, ≥256px |
+| `background` | path \| URL | no | Hero image used in the featured spot |
+| `screenshots` | (path \| URL)[] | no | 2–5 images, 16:9 aspect ratio |
+| `website` / `source` / `docs` | URL | no | Links shown in the detail view |
+| `entrypoint` | object | yes | See below |
+| `customInstall` | bool | no | Default `true`; enables custom port/volume during installation |
+| `requirements` | object | no | Min/recommended specs table; if omitted the store uses defaults |
 
 ### `entrypoint`
 
 ```yaml
 entrypoint:
-  main: jellyfin      # nome do service com UI web (deve existir em services)
-  index: /            # path aberto pelo navegador
-  portMap: "8096"     # porta web (string, entre aspas)
+  main: jellyfin      # service name with a web UI (must exist in services)
+  index: /            # path opened by the browser
+  portMap: "8096"     # web port (string, quoted)
   scheme: http        # http | https
 ```
 
@@ -56,66 +56,66 @@ requirements:
     minimum: 50GB
     recommended: 100GB+
   processor:
-    minimum: Dual Core 64 bits
+    minimum: Dual Core 64-bit
     recommended: Six Core ARM
 ```
 
-Campos ausentes recebem defaults da loja (2GB/4GB+, 50GB/100GB+).
+Missing fields receive store defaults (2GB/4GB+, 50GB/100GB+).
 
-## Campos localizados
+## Localized fields
 
-Qualquer campo textual aceita string simples ou mapa de locale:
+Any text field accepts either a plain string or a locale map:
 
 ```yaml
-title: Jellyfin                    # simples
+title: Jellyfin                     # plain
 tagline:
-  pt_br: Sua mídia, seu servidor.  # localizado
+  pt_br: Sua mídia, seu servidor.   # localized
   en_us: Your media, your server.
 ```
 
-Resolução: `pt_br` → `en_us` → primeiro valor disponível.
+Resolution order: `pt_br` → `en_us` → first available value.
 
-## Assets locais
+## Local assets
 
-Caminhos relativos (`./icon.png`) são resolvidos dentro da pasta do app.
-O sincronizador baixa assets remotos (URLs) para o cache local do dispositivo;
-falhas de download são toleradas (o app usa fallback gráfico).
+Relative paths (`./icon.png`) are resolved inside the app folder.
+The syncer downloads remote assets (URLs) to the device's local cache;
+download failures are tolerated (the app falls back to a placeholder graphic).
 
-Recomendações:
+Recommendations:
 
-- `icon`: 512×512 PNG/SVG, fundo transparente
+- `icon`: 512×512 PNG/SVG, transparent background
 - `background`: 1920×1080 WEBP/JPG, ≤500KB
-- `screenshots`: 1280×720+, WEBP/JPG, 2–5 arquivos
+- `screenshots`: 1280×720+, WEBP/JPG, 2–5 files
 
-## Validação
+## Validation
 
-- Local: `python3 scripts/validate.py`
-- CI roda o mesmo script em todo PR
-- O daemon revalida durante o sync; apps inválidos são ignorados com log
+- Local: `ruby scripts/validate.rb`
+- CI runs the same script on every PR
+- The daemon revalidates during sync; invalid apps are skipped with a log entry
 
 ## CasaOS
 
-Se o compose não tiver `x-glass` mas tiver `x-casaos`, o parser aplica o
-seguinte mapeamento (CasaOS v2, top-level):
+If the compose file has no `x-glass` but has `x-casaos`, the parser applies
+the following mapping (CasaOS v2, top-level):
 
-| `x-casaos` | `x-glass` equivalente |
+| `x-casaos` | Equivalent `x-glass` |
 |---|---|
-| `id` (ou `name` do compose) | id |
-| `title` / `tagline` / `description` (localizados) | idem |
+| `id` (or compose `name`) | id |
+| `title` / `tagline` / `description` (localized) | same |
 | `icon` | `icon` |
 | `thumbnail` | `background` |
 | `screenshot_link` | `screenshots` |
-| `developer` / `author` | idem |
-| `category` | mapeado p/ enum da loja quando conhecido, senão `other` |
-| `architectures` | idem (`amd64`→exibido como x86-64) |
+| `developer` / `author` | same |
+| `category` | mapped to store enum when known, otherwise `other` |
+| `architectures` | same (`amd64` → displayed as x86-64) |
 | `version` / `update_at` | `version` / `updatedAt` |
 | `website` / `repo` / `docs` / `support` | `website` / `source` / `docs` / `support` |
 | `main` / `index` / `port_map` / `scheme` | `entrypoint.main/index/portMap/scheme` |
 
-Blocos service-level `x-casaos` (descrições de ports/volumes/envs) são
-aceitos e usados como dicas na instalação customizada; nunca obrigatórios.
+Service-level `x-casaos` blocks (port/volume/env descriptions) are
+accepted and used as hints during custom installation; never required.
 
-## Versionamento da spec
+## Spec versioning
 
-Mudanças incompatíveis incrementam `specVersion` no validador e exigem
-atualização simultânea do daemon. Campos novos devem ser opcionais.
+Breaking changes increment `specVersion` in the validator and require a
+simultaneous daemon update. New fields must be optional.
