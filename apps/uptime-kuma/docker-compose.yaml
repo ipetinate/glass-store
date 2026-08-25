@@ -1,7 +1,7 @@
 name: uptime-kuma
 services:
   uptime-kuma:
-    image: louislam/uptime-kuma:1.23.16
+    image: louislam/uptime-kuma:2.3.2
     container_name: uptime-kuma
     restart: unless-stopped
     ports:
@@ -14,26 +14,30 @@ x-glass:
     pt_br: Uptime Kuma
     en_us: Uptime Kuma
   tagline:
-    pt_br: Monitor de disponibilidade self-hosted.
-    en_us: Self-hosted uptime monitoring.
+    pt_br: Monitoramento self-hosted de uptime e serviços.
+    en_us: Self-hosted uptime and service monitoring.
   description:
     pt_br: |
-      Monitore sites, APIs e serviços com verificações HTTP/TCP/DNS,
-      bonitos status pages, notificações em dezenas de canais (Slack,
-      Telegram, Discord, webhooks) e histórico de latência.
+      Ferramenta self-hosted para monitorar disponibilidade de serviços,
+      hosts e endpoints.
     en_us: |
-      Monitor websites, APIs and services with HTTP/TCP/DNS checks,
-      status pages, notifications via dozens of channels and latency
-      history — all self-hosted.
+      Self-hosted tool to monitor the availability of services, hosts
+      and endpoints.
   developer: Louis Lam
   category: devops
-  tags: [Monitoring]
-  architectures: [amd64, arm64, arm]
-  version: "1.23.16"
-  updatedAt: "2026-08-24"
-  icon: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/UptimeKuma/icon.png
-  background: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/UptimeKuma/thumbnail.png
-  website: https://uptime.kuma.pet
+  tags: [monitoring, uptime, status-page, alerts, network]
+  architectures: [amd64, arm64]
+  version: "2.3.2"
+  updatedAt: "2026-08-25"
+  icon: ./assets/icon.svg
+  background: ./assets/background.jpg
+  screenshots:
+    - ./assets/screenshot-1.jpg
+    - ./assets/screenshot-2.jpg
+    - ./assets/screenshot-3.png
+    - ./assets/screenshot-4.jpg
+    - ./assets/screenshot-5.jpg
+  website: https://uptime.kuma.pet/
   source: https://github.com/louislam/uptime-kuma
   docs: https://github.com/louislam/uptime-kuma/wiki
   entrypoint:
@@ -44,11 +48,11 @@ x-glass:
   customInstall: true
   requirements:
     memory:
-      minimum: 512MB
-      recommended: 2GB+
+      minimum: 256MB
+      recommended: 512MB+
     storage:
-      minimum: 5GB
-      recommended: 20GB+
+      minimum: 1GB
+      recommended: 5GB+
     processor:
-      minimum: Single Core 64 bits
-      recommended: Dual Core ARM
+      minimum: Single Core
+      recommended: Dual Core

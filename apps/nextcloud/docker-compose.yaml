@@ -1,7 +1,7 @@
 name: nextcloud
 services:
   nextcloud:
-    image: nextcloud:31.0.2-apache
+    image: nextcloud:34.0.2
     container_name: nextcloud
     restart: unless-stopped
     depends_on:
@@ -40,27 +40,29 @@ x-glass:
     pt_br: Nextcloud
     en_us: Nextcloud
   tagline:
-    pt_br: Arquivos, calendário e colaboração em um só lugar.
-    en_us: Files, calendar and collaboration in one place.
+    pt_br: Sua própria nuvem para arquivos, colaboração e produtividade.
+    en_us: Your own cloud for files, collaboration and productivity.
   description:
     pt_br: |
-      Suíte de colaboração self-hosted: arquivos com sincronização e
-      compartilhamento, calendário, contatos, fotos e centenas de apps da
-      comunidade — mantendo seus dados no seu servidor.
+      Plataforma self-hosted para armazenamento de arquivos, sincronização
+      e colaboração.
     en_us: |
-      Self-hosted productivity suite: file sync and share, calendar,
-      contacts, photos and hundreds of community apps on your own server.
+      Self-hosted platform for file storage, sync and collaboration.
   developer: Nextcloud GmbH
   category: productivity
-  tags: [Productivity, Files]
-  architectures: [amd64, arm64, arm]
-  version: "31.0.2"
-  updatedAt: "2026-08-24"
-  icon: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Nextcloud/icon.png
-  background: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Nextcloud/thumbnail.png
-  website: https://nextcloud.com
+  tags: [cloud, files, sync, collaboration, calendar]
+  architectures: [amd64, arm64]
+  version: "34.0.2"
+  updatedAt: "2026-08-25"
+  icon: ./assets/icon.png
+  background: ./assets/background.png
+  screenshots:
+    - ./assets/screenshot-1.png
+    - ./assets/screenshot-2.png
+    - ./assets/screenshot-3.png
+  website: https://nextcloud.com/
   source: https://github.com/nextcloud/server
-  docs: https://docs.nextcloud.com
+  docs: https://docs.nextcloud.com/
   entrypoint:
     main: nextcloud
     index: /
@@ -69,11 +71,11 @@ x-glass:
   customInstall: true
   requirements:
     memory:
-      minimum: 512MB
+      minimum: 1GB
       recommended: 4GB+
     storage:
-      minimum: 50GB
-      recommended: 100GB+
+      minimum: 10GB
+      recommended: 50GB+
     processor:
-      minimum: Dual Core 64 bits
-      recommended: Quad Core ARM
+      minimum: Dual Core
+      recommended: Quad Core

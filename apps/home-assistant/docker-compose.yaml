@@ -1,7 +1,7 @@
 name: home-assistant
 services:
   home-assistant:
-    image: homeassistant/home-assistant:2025.3.3
+    image: ghcr.io/home-assistant/home-assistant:2026.8.2
     container_name: home-assistant
     restart: unless-stopped
     network_mode: host
@@ -13,25 +13,27 @@ x-glass:
     pt_br: Home Assistant
     en_us: Home Assistant
   tagline:
-    pt_br: Automação residencial com privacidade local.
-    en_us: Local-first home automation.
+    pt_br: Plataforma open source para automação residencial.
+    en_us: Open source home automation platform.
   description:
     pt_br: |
-      Plataforma de automação residencial que integra milhares de
-      dispositivos e serviços, executando automações localmente — sem
-      depender da nuvem para funcionar.
+      Plataforma self-hosted para integrar dispositivos, criar automações
+      e controlar uma casa inteligente.
     en_us: |
-      Home automation platform integrating thousands of devices and
-      services while running your automations locally, without the cloud.
-  developer: Nabu Casa
+      Self-hosted platform to integrate devices, build automations and
+      control your smart home.
+  developer: Open Home Foundation
   category: home
-  tags: [Home, Automation]
+  tags: [smart-home, automation, iot, dashboard, home]
   architectures: [amd64, arm64]
-  version: "2025.3.3"
-  updatedAt: "2026-08-24"
-  icon: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/HomeAssistant/icon.png
-  background: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/HomeAssistant/thumbnail.png
-  website: https://www.home-assistant.io
+  version: "2026.8.2"
+  updatedAt: "2026-08-25"
+  icon: ./assets/icon.png
+  background: ./assets/background.png
+  screenshots:
+    - ./assets/screenshot-1.png
+    - ./assets/screenshot-2.png
+  website: https://www.home-assistant.io/
   source: https://github.com/home-assistant/core
   docs: https://www.home-assistant.io/docs/
   entrypoint:
@@ -42,11 +44,11 @@ x-glass:
   customInstall: false
   requirements:
     memory:
-      minimum: 2GB
-      recommended: 4GB+
+      minimum: 1GB
+      recommended: 2GB+
     storage:
-      minimum: 32GB
-      recommended: 100GB+
+      minimum: 16GB
+      recommended: 32GB+
     processor:
-      minimum: Dual Core 64 bits
-      recommended: Quad Core ARM
+      minimum: Dual Core
+      recommended: Quad Core

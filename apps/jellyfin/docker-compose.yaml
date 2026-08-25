@@ -1,7 +1,7 @@
 name: jellyfin
 services:
   jellyfin:
-    image: jellyfin/jellyfin:10.10.6
+    image: jellyfin/jellyfin:10.11.11
     container_name: jellyfin
     restart: unless-stopped
     ports:
@@ -16,30 +16,27 @@ x-glass:
     pt_br: Jellyfin
     en_us: Jellyfin
   tagline:
-    pt_br: Sua mídia, seu servidor, do seu jeito.
-    en_us: Your media, your server, your way.
+    pt_br: Servidor de mídia livre para organizar e transmitir filmes, séries e música.
+    en_us: Free media server to organize and stream movies, shows and music.
   description:
     pt_br: |
-      Jellyfin é a solução de mídia construída por voluntários que coloca
-      você no controle da sua biblioteca. Transmita para qualquer dispositivo
-      a partir do seu próprio servidor, sem amarras: filmes, séries, música
-      e fotos com metadados, legendas e transcodificação on-the-fly.
+      Sistema de mídia self-hosted para organizar, gerenciar e transmitir
+      sua própria biblioteca.
     en_us: |
-      Jellyfin is the volunteer-built media solution that puts you in control
-      of your media. Stream to any device from your own server, with no
-      strings attached.
-  developer: Jellyfin Dev Team
+      Self-hosted media system to organize, manage and stream your own
+      library.
+  developer: Jellyfin Project
   category: multimedia
-  tags: [Multimedia, Video, Library]
-  architectures: [amd64, arm64, arm]
-  version: "10.10.6"
-  updatedAt: "2026-08-24"
-  icon: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Jellyfin/icon.png
-  background: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Jellyfin/thumbnail.png
+  tags: [media, streaming, movies, tv, music]
+  architectures: [amd64, arm64]
+  version: "10.11.11"
+  updatedAt: "2026-08-25"
+  icon: ./assets/icon.png
+  background: ./assets/background.png
   screenshots:
-    - https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Jellyfin/screenshot-1.png
-    - https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/Jellyfin/screenshot-2.png
-  website: https://jellyfin.org
+    - ./assets/screenshot-1.png
+    - ./assets/screenshot-2.png
+  website: https://jellyfin.org/
   source: https://github.com/jellyfin/jellyfin
   docs: https://jellyfin.org/docs/
   entrypoint:
@@ -50,11 +47,11 @@ x-glass:
   customInstall: true
   requirements:
     memory:
-      minimum: 2GB
+      minimum: 1GB
       recommended: 4GB+
     storage:
-      minimum: 50GB
+      minimum: 10GB
       recommended: 100GB+
     processor:
-      minimum: Dual Core 64 bits
-      recommended: Six Core ARM
+      minimum: Dual Core
+      recommended: Quad Core

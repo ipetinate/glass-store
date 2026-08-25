@@ -1,7 +1,7 @@
 name: adguard-home
 services:
   adguard-home:
-    image: adguard/adguardhome:v0.107.57
+    image: adguard/adguardhome:v0.107.70
     container_name: adguard-home
     restart: unless-stopped
     ports:
@@ -19,39 +19,38 @@ x-glass:
     en_us: AdGuard Home
   tagline:
     pt_br: Bloqueio de anúncios e rastreadores para toda a rede.
-    en_us: Network-wide ads and trackers blocking DNS server.
+    en_us: Network-wide ads and trackers blocking.
   description:
     pt_br: |
-      Servidor DNS que bloqueia anúncios e rastreadores para todos os
-      dispositivos da rede, com painel de controle, filtros configuráveis
-      e criptografia DNS (DoH/DoT).
+      Servidor DNS self-hosted que bloqueia anúncios, rastreadores e
+      domínios indesejados para toda a rede.
     en_us: |
-      DNS server that blocks ads and trackers for every device on your
-      network, with a dashboard, configurable filters and encrypted DNS.
-  developer: AdGuard Team
+      Self-hosted DNS server that blocks ads, trackers and unwanted
+      domains for your whole network.
+  developer: AdGuard Software Ltd.
   category: networking
-  tags: [Networking, DNS]
-  architectures: [amd64, arm64, arm]
-  version: "0.107.57"
-  updatedAt: "2026-08-24"
-  icon: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/AdGuardHome/icon.png
-  background: https://cdn.jsdelivr.net/gh/IceWhaleTech/CasaOS-AppStore@main/Apps/AdGuardHome/thumbnail.png
-  website: https://adguard.com
+  tags: [dns, adblock, privacy, network, security]
+  architectures: [amd64, arm64]
+  version: "0.107.70"
+  updatedAt: "2026-08-25"
+  icon: ./assets/icon.svg
+  background: ./assets/background.svg
+  website: https://adguard.com/adguard-home/overview.html
   source: https://github.com/AdguardTeam/AdGuardHome
   docs: https://github.com/AdguardTeam/AdGuardHome/wiki
   entrypoint:
     main: adguard-home
     index: /
-    portMap: "8081"
+    portMap: "3080"
     scheme: http
   customInstall: true
   requirements:
     memory:
-      minimum: 512MB
-      recommended: 2GB+
+      minimum: 256MB
+      recommended: 512MB+
     storage:
-      minimum: 5GB
-      recommended: 20GB+
+      minimum: 1GB
+      recommended: 5GB+
     processor:
-      minimum: Single Core 64 bits
-      recommended: Dual Core ARM
+      minimum: Single Core
+      recommended: Dual Core
