@@ -1,0 +1,37 @@
+name: portainer
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    restart: unless-stopped
+    ports:
+      - "9443:9443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+x-glass:
+  title:
+    pt_br: Portainer
+    en_us: Portainer
+  tagline:
+    pt_br: Gerenciamento visual de containers Docker.
+    en_us: Visual management for Docker containers.
+  description:
+    pt_br: |
+      Portainer Community Edition é uma plataforma de gerenciamento visual
+      que simplifica a administração de containers Docker, Swarm e Kubernetes.
+  developer: Portainer.io
+  category: devops
+  tags: [Docker, Containers, Management]
+  architectures: [amd64, arm64]
+  version: "2.21.5"
+  updatedAt: "2026-08-25"
+  icon: https://raw.githubusercontent.com/portainer/portainer-docs/main/images/logo-portainer.svg
+  entrypoint:
+    main: portainer
+    index: /
+    portMap: "9443"
+    scheme: https
+
+volumes:
+  portainer_data:
