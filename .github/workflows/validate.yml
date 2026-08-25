@@ -15,8 +15,38 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: ruby/setup-ruby@v1
         with:
-          python-version: "3.12"
-      - run: pip install pyyaml
-      - run: python3 scripts/validate.py
+          ruby-version: "3.3"
+      - run: ruby scripts/validate.rb
+
+  compose-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate compose files
+        run: |
+          shopt -s nullglob
+          files=(apps/*/docker-compose.y*ml)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "Nenhum compose file encontrado"
+            exit 0
+          fi
+          errors=0
+          for f in "${files[@]}"; do
+            app=$(basename "$(dirname "$f")")
+            echo -n "  compose config  $app ... "
+            if docker compose -f "$f" config --quiet 2>/tmp/compose-err-"$app".txt; then
+              echo "ok"
+            else
+              echo "FALHOU"
+              cat /tmp/compose-err-"$app".txt >&2
+              errors=$((errors + 1))
+            fi
+          done
+          if [ "$errors" -gt 0 ]; then
+            echo ""
+            echo "$errors compose file(s) inválido(s)" >&2
+            exit 1
+          fi
+          echo "${#files[@]} compose file(s) válido(s)"

@@ -40,7 +40,7 @@ apps/
     ├── background.webp       # 16:9 hero image (optional)
     └── screenshots/*.webp    # 2-5 16:9 images (optional)
 docs/SPEC.md                  # full x-glass specification
-scripts/validate.py           # local validator
+scripts/validate.rb           # local validator
 .github/workflows/validate.yml # validates all PRs
 ```
 
@@ -49,7 +49,7 @@ scripts/validate.py           # local validator
 1. Create the folder `apps/<slug>/` (slug in lowercase, `[a-z0-9_-]`).
 2. Write the `docker-compose.yaml` with a **pinned** image (never `:latest`).
 3. Add the `x-glass` block with metadata (see [SPEC](docs/SPEC.md)).
-4. Run `python3 scripts/validate.py` locally.
+4. Run `ruby scripts/validate.rb` locally.
 5. Open the PR — CI validates automatically.
 
 ### Minimum Example
