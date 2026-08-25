@@ -7,6 +7,7 @@
 
 require "yaml"
 require "pathname"
+require "date"
 
 ROOT = Pathname.new(__dir__).expand_path.parent
 APPS_DIR = ROOT / "apps"
