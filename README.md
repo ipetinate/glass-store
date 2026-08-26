@@ -13,6 +13,7 @@
 <div align="center">
   <a href="https://github.com/ipetinate/glass-store/actions"><img src="https://github.com/ipetinate/glass-store/actions/workflows/validate.yml/badge.svg" alt="CI"></a>
   <a href="https://github.com/ipetinate/glass-store/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ipetinate/glass-store" alt="License"></a>
+  <a href="https://github.com/ipetinate/glass-store/stargazers"><img src="https://img.shields.io/github/stars/ipetinate/glass-store" alt="Stars"></a>
 </div>
 
 ---
