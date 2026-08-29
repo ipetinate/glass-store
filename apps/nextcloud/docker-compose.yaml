@@ -8,7 +8,7 @@ services:
       - database
       - redis
     ports:
-      - "8080:80"
+      - "8081:80"
     volumes:
       - /DATA/AppData/nextcloud/html:/var/www/html
     environment:
@@ -57,7 +57,7 @@ x-glass:
   entrypoint:
     main: nextcloud
     index: /
-    portMap: "8080"
+    portMap: "8081"
     scheme: http
   customInstall: true
   requirements:
