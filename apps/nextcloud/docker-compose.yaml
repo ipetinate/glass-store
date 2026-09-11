@@ -10,7 +10,7 @@ services:
     ports:
       - "8081:80"
     volumes:
-      - /DATA/AppData/nextcloud/html:/var/www/html
+      - nextcloud_html:/var/www/html
     environment:
       MYSQL_HOST: database
       MYSQL_DATABASE: nextcloud
@@ -28,12 +28,18 @@ services:
       MYSQL_USER: nextcloud
       MYSQL_PASSWORD: nextcloud
     volumes:
-      - /DATA/AppData/nextcloud/db:/var/lib/mysql
+      - nextcloud_db:/var/lib/mysql
 
   redis:
     image: redis:7.4-alpine
     container_name: nextcloud_redis
     restart: unless-stopped
+
+volumes:
+  nextcloud_html:
+    name: nextcloud_html
+  nextcloud_db:
+    name: nextcloud_db
 
 x-glass:
   title: Nextcloud
